@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "program": "${fileDirname}\\..\\output\\${fileBasenameNoExtension}.exe",//{fileDirname}:文件所在的文件夹路径，..表示父路径，表示编译文件的路径
+            "stopAtEntry": false,//调试时在main方法处停住
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "linux": {
+                "MIMode": "gdb",
+                "miDebuggerPath": "gdb",
+                "program": "${workspaceFolder}/output/main"
+            },
+            "osx": {
+                "MIMode": "lldb",
+                "miDebuggerPath": "lldb-mi",
+                "program": "${workspaceFolder}/output/main"
+            },
+            "windows": {
+                "MIMode": "gdb",
+                "miDebuggerPath": "C:\\Program Files\\mingw64\\bin\\gdb.exe",//根据安装位置自行修改
+                
+                "setupCommands": [ {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }]
+            },
+            "preLaunchTask": "g++"//编译C++为g++,编译C为gcc
+        }
+    ]
+}

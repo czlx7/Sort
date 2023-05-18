@@ -1,0 +1,65 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "g++", //任务的名称
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${fileDirname}"//源文件的路径
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new", //这里shared表示共享，改成new之后每个进程创建新的端口
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "windows": {
+                "command": "C:\\Program Files\\mingw64\\bin\\g++.exe",//根据安装位置自行修改
+                "args": [
+                    "-Wall",
+                    "-std=c++17",
+                    "${file}",
+                    "-g",
+                    "-o",
+                    "${fileDirname}/../output/${fileBasenameNoExtension}.exe" ,//程序运行的路径
+                    "-fexec-charset=GBK"
+                ]
+            },
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "make"
+                ]
+            },
+            "osx": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "make"
+                ]
+            }
+        }
+    ]
+}
